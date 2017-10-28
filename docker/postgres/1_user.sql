@@ -1,0 +1,1 @@
+CREATE USER foo WITH PASSWORD 'bar';

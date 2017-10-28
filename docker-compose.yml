@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./docker/postgres:/docker-entrypoint-initdb.d:ro
+    networks:
+      - db-bridge
+
+  app:
+    build: ./app
+    #restart: always
+    environment:
+      - DB_USER=foo
+      - DB_PASSWORD=bar
+      - DB_NAME=app
+      - DB_HOST=db
+    depends_on:
+      - db
+    networks:
+      - db-bridge
+
+networks:
+  db-bridge:
+
