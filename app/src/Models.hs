@@ -19,7 +19,8 @@ User
     firstname String
     lastname String
     email String
-    deriving Show
+    UniqueUser email
+    deriving Show Eq
 
 Link
     url String
@@ -41,3 +42,7 @@ UserLinkCategory
     categoryId CategoryId
     deriving Show
 |]
+
+type Firstname = String
+type Lastname = String
+type Email = String

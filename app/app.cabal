@@ -18,6 +18,7 @@ library
   exposed-modules:     Lib
                      , Models
                      , Config
+                     , DataLayer
   build-depends:       base >= 4.7 && < 5
                      , persistent
                      , persistent-postgresql
@@ -26,6 +27,8 @@ library
                      , bytestring
                      , monad-control
                      , time
+                     , esqueleto
+                     , mtl
   default-language:    Haskell2010
 
 executable app-exe
@@ -42,6 +45,9 @@ test-suite app-test
   main-is:             Spec.hs
   build-depends:       base
                      , app
+                     , hspec
+                     , mtl
+                     , hspec-expectations-lifted
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 
