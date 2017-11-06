@@ -1,13 +1,13 @@
 module DataLayerSpec where
 
 import TestImport
-import Control.Monad.Reader (runReader)
+import Data.Maybe (fromJust)
 
 spec :: Spec
 spec = do
     describe "Datalayer test" $ do
         it "should create an user and fetch it back" $ do
             conf <- getConfig
-            runReader (insertUser "Charles" "Vandevoorde" "charles.vandevoorde@hotmail.be") conf
-            let user = runReader (getUser "charles.vandevoorde@hotmail.be") conf
-            user `shouldBe` Just (User "Charles" "Vandevoorde" "charles.vandevoorde@hotmail.be")
+            runReaderT (insertUser "Charles" "Vandevoorde" "charles.vandevoorde@hotmail.be") conf
+            user <- runReaderT (getUser "charles.vandevoorde@hotmail.be") conf
+            (userEmail $ fromJust user) `shouldBe` "charles.vandevoorde@hotmail.be"
